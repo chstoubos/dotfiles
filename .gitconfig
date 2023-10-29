@@ -1,0 +1,38 @@
+[user]
+    email = chstoubos@gmail.com
+    name = chstoubos
+    signingkey = chstoubos@gmail.com
+[interactive]
+    diffFilter = delta --color-only
+[core]
+    pager = delta
+[filter "lfs"]
+    process = git-lfs filter-process
+    required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+[delta]
+    navigate = true  # use n and N to move between diff sections
+    side-by-side = true
+    light = false    # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+    line-numbers = true
+    commit-decoration-style = yellow box
+    file-style = bold yellow
+    file-decoration-style = bold yellow ul
+    hunk-header-decoration-style = box blue
+    plus-style = syntax "#003800"
+    minus-style = syntax "#3f0001"
+[merge]
+    conflictstyle = diff3
+    tool = xxdiff
+[diff]
+    colorMoved = default
+    tool = xxdiff
+[credential]
+    helper = store
+[cola]
+    spellcheck = false
+    blameviewer = git gui blame
+[gui]
+    editor = gvim
+    historybrowser = gitk

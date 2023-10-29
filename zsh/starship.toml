@@ -1,0 +1,157 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Inserts a blank line between shell prompts
+add_newline = true
+
+[line_break]
+disabled = false
+
+# Replace the '❯' symbol in the prompt with '➜'
+[character] # The name of the module we are configuring is 'character'
+success_symbol = '[➜](bold green)' # The 'success_symbol' segment is being set to '➜' with the color 'bold green'
+error_symbol = "[➜](bold red) "
+
+[status]
+style = "bg:red"
+symbol = ""
+format = '[\[$symbol$status\]]($style) '
+disabled = false
+
+# Disable the package module, hiding it from the prompt completely
+[package]
+disabled = true
+
+[username]
+style_user = "purple bold"
+style_root = "red bold"
+format = "[$user]($style) "
+disabled = false
+show_always = true
+
+[hostname]
+ssh_only = true
+format = '@[$hostname](bold yellow) '
+disabled = false
+
+[directory]
+style = 'bold cyan'
+read_only_style = 'red'
+truncate_to_repo = false
+truncation_length = 5 
+truncation_symbol = ''
+read_only = '🔒'
+format = '[$path]($style)[$read_only]($read_only_style) '
+home_symbol = '~'
+
+[lua]
+disabled = true
+
+[docker_context]
+format = "via [🐋 $context](blue bold)"
+
+[cmd_duration]
+disabled = true
+
+[cobol]
+disabled = true
+
+[time]
+disabled = true
+
+[cmake]
+disabled = true
+
+[c]
+disabled = true
+
+[aws]
+disabled = true
+
+[battery]
+disabled = true
+
+[conda]
+disabled = true
+
+[crystal]
+disabled = true
+
+[dart]
+disabled = true
+
+[dotnet]
+disabled = true
+
+[elixir]
+disabled = true
+
+[elm]
+disabled = true
+
+[erlang]
+disabled = true
+
+[golang]
+disabled = true
+
+[helm]
+disabled = true
+
+[java]
+disabled = true
+
+[jobs]
+disabled = true
+
+[julia]
+disabled = true
+
+[kubernetes]
+disabled = true
+
+[memory_usage]
+disabled = true
+
+[nim]
+disabled = true
+
+[nix_shell]
+disabled = true
+
+[nodejs]
+disabled = true
+
+[ocaml]
+disabled = true
+
+[perl]
+disabled = true
+
+[php]
+disabled = true
+
+[python]
+format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+disabled = false
+
+[ruby]
+disabled = true
+
+[rust]
+disabled = true
+
+[shlvl]
+disabled = true
+
+[singularity]
+disabled = true
+
+[swift]
+disabled = true
+
+[zig]
+disabled = true
+
+[purescript]
+disabled = true
