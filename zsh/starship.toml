@@ -23,15 +23,15 @@ disabled = false
 disabled = true
 
 [username]
-style_user = "purple bold"
+style_user = "bright-yellow bold"
 style_root = "red bold"
-format = "[$user]($style) "
+format = "[$user]($style)"
 disabled = false
 show_always = true
 
 [hostname]
 ssh_only = true
-format = '@[$hostname](bold yellow) '
+format = '@[$hostname](bold bright-yellow)'
 disabled = false
 
 [directory]
@@ -41,7 +41,7 @@ truncate_to_repo = false
 truncation_length = 5 
 truncation_symbol = ''
 read_only = '🔒'
-format = '[$path]($style)[$read_only]($read_only_style) '
+format = ' [$path]($style)[$read_only]($read_only_style) '
 home_symbol = '~'
 
 [lua]
