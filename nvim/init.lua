@@ -505,7 +505,10 @@ require('mason-lspconfig').setup()
 local servers = {
   clangd = {},
   gopls = {},
+  cmake = {},
+  awk_ls = {},
   rust_analyzer = {},
+  bashls = {},
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
