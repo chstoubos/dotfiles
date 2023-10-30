@@ -26,8 +26,8 @@ disabled = false
 disabled = true
 
 [username]
-style_user = "bright-yellow bold"
-style_root = "red bold"
+style_user = "bright-purple bold"
+style_root = "bright-red bold"
 format = "[$user]($style)"
 disabled = false
 show_always = true
