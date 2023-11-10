@@ -1,9 +1,6 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
--- Install package manager
---    https://github.com/folke/lazy.nvim
---    `:help lazy.nvim.txt` for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system {
@@ -20,8 +17,6 @@ vim.opt.rtp:prepend(lazypath)
 --  You can also configure plugins after the setup call,
 --    as they will be available in your neovim runtime.
 require('lazy').setup({
-  -- NOTE: First, some plugins that don't require any configuration
-
   -- Git related plugins
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
@@ -31,8 +26,6 @@ require('lazy').setup({
 
   'christoomey/vim-tmux-navigator',
 
-  -- NOTE: This is where your plugins related to LSP can be installed.
-  --  The configuration is done below. Search for lspconfig to find it below.
   {
     -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
@@ -201,7 +194,7 @@ require('lazy').setup({
     'windwp/nvim-autopairs',
     event = "InsertEnter",
     opts = {}
-  }
+  },
 
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
