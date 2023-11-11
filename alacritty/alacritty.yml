@@ -9,7 +9,7 @@
 # All imports must either be absolute paths starting with `/`, or paths relative
 # to the user's home directory starting with `~/`.
 import:
-  - /home/chris/.config/alacritty/themes/pencil_dark.yaml
+  - /home/chris/.config/alacritty/themes/Cobalt2.yaml
 
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
