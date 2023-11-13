@@ -34,6 +34,3 @@
 [cola]
     spellcheck = false
     blameviewer = git gui blame
-[gui]
-    editor = gvim
-    historybrowser = gitk
