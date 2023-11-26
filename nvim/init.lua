@@ -283,8 +283,13 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
+-- Paste without adding the contents to your buffer
 vim.keymap.set("x", "<leader>p", [["_dP]])
 
+-- Delete without adding the contents to the buffer
+vim.keymap.set({"n", "v"}, "<leader>d", [["_d]])
+
+-- Unmap Q
 vim.keymap.set("n", "Q", "<nop>")
 
 -- Keymaps for better default experience
