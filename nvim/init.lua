@@ -521,7 +521,13 @@ local servers = {
   gopls = {},
   cmake = {},
   awk_ls = {},
-  rust_analyzer = {},
+  rust_analyzer = {
+    ["rust-analyzer"] = {
+      checkOnSave = {
+        command = "clippy",
+      },
+    },
+  },
   bashls = {},
   lua_ls = {
     Lua = {
