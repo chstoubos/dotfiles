@@ -362,8 +362,8 @@ vim.defer_fn(function()
   require('nvim-treesitter.configs').setup {
     -- Add languages to be installed here that you want installed for treesitter
     ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim',
-      'bash', 'awk', 'cmake', 'bitbake', 'css', 'csv', 'git_config', 'doxygen', 'html', 'javascript', 'kconfig',
-      'markdown', 'passwd', 'perl', 'php', 'sql', 'ssh_config', 'toml', 'typescript', 'yaml', 'zig' },
+      'bash', 'awk', 'cmake', 'bitbake', 'css', 'csv', 'git_config', 'doxygen', 'html', 'kconfig',
+      'markdown', 'passwd', 'perl', 'sql', 'ssh_config', 'toml', 'typescript', 'yaml', 'zig', 'cuda' },
 
     -- Install parsers synchronously (only applied to `ensure_installed`)
     sync_install = false,
