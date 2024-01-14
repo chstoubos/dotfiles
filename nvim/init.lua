@@ -119,6 +119,7 @@ require('lazy').setup({
         theme = 'catppuccin-mocha',
         component_separators = '|',
         section_separators = '',
+        path = 4
       },
     },
   },
@@ -287,7 +288,7 @@ vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("x", "<leader>p", [["_dP]])
 
 -- Delete without adding the contents to the buffer
-vim.keymap.set({"n", "v"}, "<leader>d", [["_d]])
+vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
 -- Unmap Q
 vim.keymap.set("n", "Q", "<nop>")
@@ -363,7 +364,7 @@ vim.defer_fn(function()
     -- Add languages to be installed here that you want installed for treesitter
     ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim',
       'bash', 'awk', 'cmake', 'bitbake', 'css', 'csv', 'git_config', 'doxygen', 'html', 'kconfig',
-      'markdown', 'passwd', 'perl', 'sql', 'ssh_config', 'toml', 'typescript', 'yaml', 'zig', 'cuda' },
+      'markdown', 'passwd', 'perl', 'sql', 'ssh_config', 'toml', 'typescript', 'yaml', 'zig', 'cuda', 'proto', 'regex', 'make', 'latex', 'devicetree', 'dockerfile' },
 
     -- Install parsers synchronously (only applied to `ensure_installed`)
     sync_install = false,
@@ -517,6 +518,7 @@ require('mason-lspconfig').setup()
 --  If you want to override the default filetypes that your language server will attach to you can
 --  define the property 'filetypes' to the map in question.
 local servers = {
+  pyright = {},
   clangd = {},
   gopls = {},
   cmake = {},
