@@ -119,6 +119,7 @@ require('lazy').setup({
         theme = 'catppuccin-mocha',
         component_separators = '|',
         section_separators = '',
+        path = 4,
       },
     },
   },
