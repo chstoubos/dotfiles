@@ -522,7 +522,6 @@ local servers = {
   clangd = {},
   gopls = {},
   cmake = {},
-  awk_ls = {},
   rust_analyzer = {
     ["rust-analyzer"] = {
       checkOnSave = {
