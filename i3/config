@@ -47,7 +47,10 @@ exec --no-startup-id pasystray
 exec --no-startup-id blueman-applet
 
 # Compositor
- exec --no-startup-id picom --config ~/.config/picom/picom.conf -b
+exec --no-startup-id picom --config ~/.config/picom/picom.conf -b
+
+# Control hybrid graphics
+exec --no-startup-id optimus-manager-qt
 
 # Use pactl to adjust volume in PulseAudio
 set $refresh_i3status killall -SIGUSR1 i3status
