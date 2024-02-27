@@ -2,13 +2,13 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 # Inserts a blank line between shell prompts
-add_newline = true
+add_newline = false
 
 # A continuation prompt that displays two filled in arrows
 continuation_prompt = '▶▶ '
 
 [line_break]
-disabled = false
+disabled = true
 
 # Replace the '❯' symbol in the prompt with '➜'
 [character] # The name of the module we are configuring is 'character'
