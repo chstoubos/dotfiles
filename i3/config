@@ -35,6 +35,8 @@ exec --no-startup-id picom --config ~/.config/picom/picom.conf -b
 # Wallpaper
 exec --no-startup-id nitrogen --restore
 
+# exec --no-startup-id sxhkd
+
 # Use pactl to adjust volume in PulseAudio
 set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
@@ -118,24 +120,28 @@ bindsym $mod+a focus parent
 set $ws1 "1: web"
 set $ws2 "2: tmux"
 set $ws3 "3: VM"
-set $ws4 "4: skype"
+set $ws4 "4: file manager"
 set $ws5 "5: spotify"
-set $ws6 "6: 1password"
-set $ws7 "7"
+set $ws6 "6: skype"
+set $ws7 "7: 1password"
 set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 
 assign [class="firefox"] $ws1
 assign [class="Alacritty"] $ws2
-assign [class="Skype"] $ws4
+assign [class="VirtualBox Manager"] $ws3
+assign [class="Thunar"] $ws4
 assign [class="Spotify"] $ws5
-assign [class="1Password"] $ws6
+assign [class="Skype"] $ws6
+assign [class="1Password"] $ws7
 
 exec --no-startup-id firefox
 exec --no-startup-id alacritty -e tmux
-exec --no-startup-id skypeforlinux
+exec --no-startup-id VirtualBox %U
+exec --no-startup-id thunar
 exec --no-startup-id spotify
+exec --no-startup-id skypeforlinux
 exec --no-startup-id 1password
 
 # switch to workspace
@@ -200,4 +206,5 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
         status_command i3status
+        strip_workspace_numbers yes
 }
