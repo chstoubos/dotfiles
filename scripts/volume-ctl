@@ -1,0 +1,26 @@
+#!/bin/bash
+
+APPNAME="volume-ctl"
+
+case $1 in
+    up)
+	pamixer --increase 5 > /dev/null
+	volume=$(pamixer --get-volume)
+	dunstify -a "volume-ctl" -t 3000 -u low -i audio-volume-high -h string:x-dunst-stack-tag:$APPNAME -h int:value:"$volume" "Volume: ${volume}%"
+	;;
+    down)
+	pamixer --decrease 5 > /dev/null
+	volume=$(pamixer --get-volume)
+	dunstify -a "volume-ctl" -t 3000 -u low -i audio-volume-high -h string:x-dunst-stack-tag:$APPNAME -h int:value:"$volume" "Volume: ${volume}%"
+	;;
+    mute)
+	pamixer -t > /dev/null
+	is_muted=$(pamixer --get-mute)
+	if [[ "$is_muted" == "true" ]]; then
+	    dunstify -a "volume-ctl" -t 3000 -u low -i audio-volume-muted -h string:x-dunst-stack-tag:$APPNAME "Muted"
+	else
+	    volume=$(pamixer --get-volume)
+	    dunstify -a "volume-ctl" -t 3000 -u low -i audio-volume-high -h string:x-dunst-stack-tag:$APPNAME -h int:value:"$volume" "Volume: ${volume}%"
+	fi
+	;;
+esac
