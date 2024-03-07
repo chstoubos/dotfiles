@@ -35,7 +35,7 @@ exec --no-startup-id picom --config ~/.config/picom/picom.conf -b
 # Wallpaper
 exec --no-startup-id nitrogen --restore
 
-# Use pactl to adjust volume in PulseAudio
+# Use pamixer to adjust volume in PulseAudio
 set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id volume-ctl up && $refresh_i3status
 bindsym XF86AudioLowerVolume exec --no-startup-id volume-ctl down && $refresh_i3status
