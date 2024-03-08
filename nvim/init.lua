@@ -679,6 +679,7 @@ require('lazy').setup({
           'latex',
           'devicetree',
           'dockerfile',
+          'json',
         },
 
         -- Autoinstall languages that are not installed
