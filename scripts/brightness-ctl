@@ -1,0 +1,32 @@
+#!/bin/bash
+
+APPNAME="brightness-ctl"
+
+case $1 in
+    up)
+	brightness=$(brightnessctl i | sed -n 2p | awk -F' ' '{print $4}' | tr -d '(%)')
+	step=5
+	if [[ brightness -lt 5 ]]; then
+	    step=1
+	fi
+	echo $step
+	brightnessctl set +"$step"% > /dev/null
+	brightness=$(brightnessctl i | sed -n 2p | awk -F' ' '{print $4}' | tr -d '(%)')
+	dunstify -a "brightness-ctl" -t 3000 -u low -i display-brightness-symbolic -h string:x-dunst-stack-tag:$APPNAME -h int:value:"$brightness" "Brightness: ${brightness}%"
+	;;
+    down)
+	brightness=$(brightnessctl i | sed -n 2p | awk -F' ' '{print $4}' | tr -d '(%)')
+	step=5
+	# When brightness is below 5% descrease the step
+	# Do not allow brightness 0
+	if [[ brightness -le 5 ]]; then
+	    step=1
+	fi
+
+	if [[ brightness -ne 1 ]]; then
+	    brightnessctl set "$step"%- > /dev/null
+	fi
+	brightness=$(brightnessctl i | sed -n 2p | awk -F' ' '{print $4}' | tr -d '(%)')
+	dunstify -a "brightness-ctl" -t 3000 -u low -i display-brightness-symbolic -h string:x-dunst-stack-tag:$APPNAME -h int:value:"$brightness" "Brightness: ${brightness}%"
+	;;
+esac

@@ -45,8 +45,8 @@ bindsym XF86AudioLowerVolume exec --no-startup-id volume-ctl down && $refresh_i3
 bindsym XF86AudioMute exec --no-startup-id volume-ctl mute && $refresh_i3status
 
 # Use brightnessctl to control screen brightness
-bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +5%
-bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
+bindsym XF86MonBrightnessUp exec --no-startup-id brightness-ctl up
+bindsym XF86MonBrightnessDown exec --no-startup-id brightness-ctl down
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
