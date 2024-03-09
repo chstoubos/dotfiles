@@ -164,7 +164,7 @@ require('lazy').setup({
 
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 
-  {                   -- Collection of various small independent plugins/modules
+  { -- Collection of various small independent plugins/modules
     'echasnovski/mini.nvim',
     config = function()
       require('mini.pairs').setup()
@@ -180,11 +180,11 @@ require('lazy').setup({
   },
 
   {
-    'ThePrimeagen/harpoon'
+    'ThePrimeagen/harpoon',
   },
 
   -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim',    opts = {} },
+  { 'numToStr/Comment.nvim', opts = {} },
 
   { -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -199,7 +199,7 @@ require('lazy').setup({
     },
   },
 
-  {                     -- Useful plugin to show you pending keybinds.
+  { -- Useful plugin to show you pending keybinds.
     'folke/which-key.nvim',
     event = 'VimEnter', -- Sets the loading event to 'VimEnter'
     config = function() -- This is the function that runs, AFTER loading
@@ -240,7 +240,7 @@ require('lazy').setup({
       { 'nvim-telescope/telescope-ui-select.nvim' },
 
       -- Useful for getting pretty icons, but requires a Nerd Font.
-      { 'nvim-tree/nvim-web-devicons',            enabled = vim.g.have_nerd_font },
+      { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
     },
     config = function()
       -- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -510,25 +510,22 @@ require('lazy').setup({
     end,
   },
 
-  -- { -- Autoformat
-  --   'stevearc/conform.nvim',
-  --   opts = {
-  --     notify_on_error = false,
-  --     format_on_save = {
-  --       timeout_ms = 500,
-  --       lsp_fallback = true,
-  --     },
-  --     formatters_by_ft = {
-  --       lua = { 'stylua' },
-  --       -- Conform can also run multiple formatters sequentially
-  --       -- python = { "isort", "black" },
-  --       --
-  --       -- You can use a sub-list to tell conform to run *until* a formatter
-  --       -- is found.
-  --       -- javascript = { { "prettierd", "prettier" } },
-  --     },
-  --   },
-  -- },
+  { -- Autoformat
+    'stevearc/conform.nvim',
+    opts = {
+      notify_on_error = false,
+      format_on_save = {
+        timeout_ms = 500,
+        lsp_fallback = true,
+      },
+      formatters_by_ft = {
+        lua = { 'stylua' },
+        cpp = { 'clang-format' },
+        c = { 'clang-format' },
+        rust = { 'rust-analyzer' },
+      },
+    },
+  },
 
   { -- Autocompletion
     'hrsh7th/nvim-cmp',
@@ -642,7 +639,7 @@ require('lazy').setup({
         component_separators = '|',
         section_separators = '',
         file_status = true,
-        path = 2
+        path = 2,
       },
     },
   },
