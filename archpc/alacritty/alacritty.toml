@@ -1,4 +1,4 @@
-# import = ["/home/chris/.config/alacritty/themes/rose-pine.toml"]
+import = ["/home/chris/.config/alacritty/themes/rose-pine.toml"]
 
 [colors.primary]
 background = "#000000"
