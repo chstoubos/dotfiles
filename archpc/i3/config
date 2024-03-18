@@ -1,9 +1,12 @@
 # alt as leader
 set $mod Mod1
 
-# Remove border
-for_window [class="^.*"] border pixel 0
-# for_window [class="^.*"] client.focused          #77dd77 #285577 #ffffff #2e9ef4   #285577
+new_window pixel 3
+new_float normal
+default_floating_border pixel 3
+
+# Hide borders
+hide_edge_borders smart
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -65,10 +68,10 @@ bindcode $mod+40 exec "rofi -show drun -show-icons"
 bindsym $mod+BackSpace exec "rofi -show power-menu -modi power-menu:rofi-power-menu"
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+h focus left
+bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -89,7 +92,7 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+h split h
+bindsym $mod+b split h
 
 # split in vertical orientation
 bindsym $mod+v split v
