@@ -1,6 +1,6 @@
 [user]
     email = chstoubos@gmail.com
-    name = chstoubos
+    name = Chris Stoumpos
     signingkey = chstoubos@gmail.com
 [interactive]
     diffFilter = delta --color-only
