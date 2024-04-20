@@ -12,6 +12,8 @@ vim.opt.number = true
 --  Experiment for yourself to see if you like it!
 vim.opt.relativenumber = true
 
+vim.opt.colorcolumn = '80'
+
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
 
@@ -445,11 +447,16 @@ require('lazy').setup({
         bashls = {},
         rust_analyzer = {
           ['rust-analyzer'] = {
+            cargo = {
+              allFeatures = true,
+            },
             checkOnSave = {
+              allFeatures = true,
               command = 'clippy',
             },
           },
         },
+        awk_ls = {},
         cmake = {},
         lua_ls = {
           -- cmd = {...},
