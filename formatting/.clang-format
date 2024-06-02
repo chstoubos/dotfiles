@@ -51,7 +51,7 @@ BreakInheritanceList: BeforeColon # check
 BreakBeforeTernaryOperators: false # check
 BreakConstructorInitializersBeforeComma: false
 BreakConstructorInitializers: AfterColon
-BreakStringLiterals: true
+BreakStringLiterals: false
 ColumnLimit: 80
 # CommentPragmas:  '^ IWYU pragma:' # check
 CompactNamespaces: false # check
