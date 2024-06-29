@@ -28,7 +28,8 @@ export PATH=~/.npm-global/bin:$PATH
 # autocompletion for ros2 & colcon
 # eval "$(register-python-argcomplete ros2)"
 # eval "$(register-python-argcomplete colcon)"
-eval "$(starship init zsh)"
+
+[ -f /usr/bin/starship ] && eval "$(starship init zsh)"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -44,3 +45,4 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+
