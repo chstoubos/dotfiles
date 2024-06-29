@@ -29,7 +29,9 @@ export PATH=~/.npm-global/bin:$PATH
 # eval "$(register-python-argcomplete ros2)"
 # eval "$(register-python-argcomplete colcon)"
 
-[ -f /usr/bin/starship ] && eval "$(starship init zsh)"
+[ -f $(which starship) ] && eval "$(starship init zsh)"
+
+printenv ROS_DISTRO 2>&1 > /dev/null && source /opt/ros/${ROS_DISTRO}/setup.zsh
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
