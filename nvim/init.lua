@@ -699,7 +699,6 @@ require('lazy').setup({
           'proto',
           'regex',
           'make',
-          'latex',
           'devicetree',
           'dockerfile',
           'json',
