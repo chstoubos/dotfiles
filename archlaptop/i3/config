@@ -118,12 +118,12 @@ bindsym $mod+a focus parent
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1: web"
-set $ws2 "2: tmux"
-set $ws3 "3: VM"
-set $ws4 "4: file manager"
-set $ws5 "5: spotify"
-set $ws6 "6: skype"
-set $ws7 "7: 1password"
+set $ws2 "2: term"
+set $ws3 "3: vm"
+set $ws4 "4: files"
+set $ws5 "5: skype"
+set $ws6 "6: 1pass"
+set $ws7 "7: music"
 set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
@@ -135,6 +135,7 @@ assign [class="Thunar"] $ws4
 assign [class="Spotify"] $ws5
 assign [class="Skype"] $ws6
 assign [class="1Password"] $ws7
+assign [class="Apple Music"] $ws7
 
 exec --no-startup-id firefox
 exec --no-startup-id alacritty -e tmux
@@ -143,6 +144,7 @@ exec --no-startup-id thunar
 exec --no-startup-id spotify
 exec --no-startup-id skypeforlinux
 exec --no-startup-id 1password
+exec --no-startup-id apple-music-desktop.sh
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1

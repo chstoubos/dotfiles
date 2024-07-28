@@ -18,7 +18,7 @@ exec --no-startup-id dex --autostart --environment i3
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+# exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 # needed by applications to store logins (eg. skypeforlinux)
 exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=ssh,secrets,pkcs11
@@ -120,12 +120,12 @@ bindsym $mod+a focus parent
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1: web"
-set $ws2 "2: tmux"
-set $ws3 "3: VM"
-set $ws4 "4: file manager"
+set $ws2 "2: term"
+set $ws3 "3: vm"
+set $ws4 "4: files"
 set $ws5 "5: skype"
-set $ws6 "6: 1password"
-set $ws7 "7"
+set $ws6 "6: 1pass"
+set $ws7 "7: music"
 set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
@@ -136,6 +136,7 @@ assign [class="VirtualBox Manager"] $ws3
 assign [class="Thunar"] $ws4
 assign [class="Skype"] $ws5
 assign [class="1Password"] $ws6
+assign [class="Apple Music"] $ws7
 
 exec --no-startup-id firefox
 exec --no-startup-id alacritty -e tmux
@@ -143,6 +144,7 @@ exec --no-startup-id VirtualBox %U
 exec --no-startup-id thunar
 exec --no-startup-id skypeforlinux
 exec --no-startup-id 1password
+exec --no-startup-id apple-music-desktop.sh
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
