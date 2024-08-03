@@ -136,7 +136,7 @@ assign [class="VirtualBox Manager"] $ws3
 assign [class="Thunar"] $ws4
 assign [class="Skype"] $ws5
 assign [class="1Password"] $ws6
-assign [class="Apple Music"] $ws7
+assign [class="Spotify"] $ws7
 
 exec --no-startup-id firefox
 exec --no-startup-id alacritty -e tmux
@@ -144,7 +144,7 @@ exec --no-startup-id VirtualBox %U
 exec --no-startup-id thunar
 exec --no-startup-id skypeforlinux
 exec --no-startup-id 1password
-exec --no-startup-id apple-music-desktop.sh
+exec --no-startup-id spotify
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
