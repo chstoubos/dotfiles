@@ -617,7 +617,7 @@ require('lazy').setup({
     name = 'rose-pine',
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme 'rose-pine'
+      vim.cmd.colorscheme 'rose-pine-moon'
     end,
   },
 
@@ -627,7 +627,7 @@ require('lazy').setup({
     opts = {
       options = {
         icons_enabled = true,
-        theme = 'catppuccin-mocha',
+        theme = 'rose-pine',
         component_separators = '|',
         section_separators = '',
         file_status = true,
