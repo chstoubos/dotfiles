@@ -111,9 +111,6 @@ vim.keymap.set('v', '<leader>fs', vim.lsp.buf.format, { desc = '[F]ormat [S]elec
 -- Format file
 vim.keymap.set('n', '<leader>ff', vim.lsp.buf.format, { desc = '[F]ormat [F]ile' })
 
--- Harpoon setup
--- vim.keymap.set('n', '<leader>a', harpoon.ui.
-
 -- TIP: Disable arrow keys in normal mode
 vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!"<CR>')
 vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!"<CR>')
