@@ -19,40 +19,20 @@ alias ipa='ip --color -4 a'
 alias df='df -Th'
 alias st='colortail -n40 -f /var/log/syslog'
 alias mc='. /usr/share/mc/bin/mc-wrapper.sh'
-alias gl='git log --decorate --oneline'
-alias gll='git log --decorate'
-alias gls='git ls-tree -r master --name-only'
 alias vg='valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all -v'
 alias vgl='valgrind --leak-check=full --track-origins=yes -v --log-file=valgrind.log'
-alias hi='highlight -O xterm256 -s darkness'
-alias hish='hi -Ssh'
+alias running_services='systemctl list-units --type=service'
+alias gpg-FORGET-card='gpgconf --kill gpg-agent'
+alias gpg-SWITCH-card='gpg-connect-agent "scd serialno" "learn --force" /bye'
+alias gpg-WAKE-card='systemctl restart pcscd'
+alias installed_packages_info="pacman -Qq | fzf --preview 'pacman -Qil {}' --layout=reverse --bind 'enter:execute(pacman -Qil {} | less)'"
+alias packages_info="pacman -Slq | fzf --preview 'pacman -Si {}' --layout=reverse"
 
-function dff() {
-		command df -Th | command grep /dev/sd | awk '{c="\033[0;41m"; if ($2=="ext4") c="\033[0;45m";
-	sub("/dev/","",$1); sub(/%/,"",$6); t=$6+0; printf("%-5s%-7s ",$1,$2); printf(c);
-	for (i=0; i<t-3; i++) printf "_"; printf("%02d%%\033[0m", t);
-	for (i=t; i<100-4; i++) printf "\033[0;47m_\033[0m";
-	printf("\033[0;7;77;37m%-4s\033[0m %-5s%s\n",$5,$3,$7)}'
-}
-
-fd() {
-  preview="git diff $@ --color=always -- {-1}"
-  git diff $@ --name-only | fzf -m --ansi --preview $preview
-}
-
-# avoid freezing by accidental CRTL-S key (CTRL-Q can help if -ixon is not set)
-stty -ixon
-
-#big brother microsoft
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
 # Prevent auto complete of non-executable files in path
 setopt hashexecutablesonly
+setopt rm_star_silent
+setopt extendedglob
 
-timezsh() {
-  shell=${1-$SHELL}
-  for i in $(seq 1 10); do /usr/bin/time $shell -i -c exit; done
-}
-
-export PATH=$PATH:/usr/local/go/bin
-
+export PATH=$PATH:/usr/local/go/bin:/opt/cuda/bin
