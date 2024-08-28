@@ -608,7 +608,7 @@ require('lazy').setup({
     name = 'rose-pine',
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme 'rose-pine-moon'
+      vim.cmd.colorscheme 'rose-pine'
     end,
   },
 
