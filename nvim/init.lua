@@ -127,6 +127,13 @@ vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!"<CR>')
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
+-- Reset cursor when exiting nvim
+vim.api.nvim_create_autocmd('ExitPre', {
+  group = vim.api.nvim_create_augroup('Exit', { clear = true }),
+  command = 'set guicursor=a:ver90',
+  desc = 'Set cursor back to beam when leaving Neovim.',
+})
+
 vim.api.nvim_create_autocmd('ColorScheme', {
   pattern = '*',
   callback = function()
