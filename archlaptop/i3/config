@@ -20,6 +20,9 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # needed by applications to store logins (eg. skypeforlinux)
 exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=ssh,secrets,pkcs11
 
+# Textual authentication
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
 # Network manager
 exec --no-startup-id nm-applet
 
