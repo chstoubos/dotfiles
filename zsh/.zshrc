@@ -22,7 +22,8 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
-export PATH=~/.npm-global/bin:$PATH
+export GEM_HOME="$HOME/gems"
+export PATH=$HOME/.npm-global/bin:$GEM_HOME:$PATH
 
 if [ -d /opt/ros/ ]; then
     source /opt/ros/humble/setup.zsh
