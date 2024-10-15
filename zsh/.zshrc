@@ -22,29 +22,12 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
 export PATH=~/.npm-global/bin:$PATH
 
-# autocompletion for ros2 & colcon
-# eval "$(register-python-argcomplete ros2)"
-# eval "$(register-python-argcomplete colcon)"
+if [ -d /opt/ros/ ]; then
+    source /opt/ros/humble/setup.zsh
+    eval "$(register-python-argcomplete3 ros2)"
+    eval "$(register-python-argcomplete3 colcon)"
+fi
 
 [ -f $(which starship) ] && eval "$(starship init zsh)"
-
-printenv ROS_DISTRO 2>&1 > /dev/null && source /opt/ros/${ROS_DISTRO}/setup.zsh
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/chris/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/chris/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/chris/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/chris/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
