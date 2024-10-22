@@ -14,9 +14,11 @@ zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
 plugins=(
 	git
+	fzf
+	colorize
+	safe-paste
 	zsh-autosuggestions
 	zsh-syntax-highlighting
-	fzf
 	colored-man-pages
 )
 
