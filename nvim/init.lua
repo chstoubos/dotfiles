@@ -168,6 +168,8 @@ require('lazy').setup({
 
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 
+  'sindrets/diffview.nvim',
+
   { -- Collection of various small independent plugins/modules
     'echasnovski/mini.nvim',
     config = function()
