@@ -47,6 +47,6 @@ columns = 140
 lines = 40
 
 [general]
-import = ["/home/chris/.config/alacritty/themes/rose-pine.toml"]
+import = ["/home/chris/.config/alacritty/themes/modus_vivendi.toml.toml"]
 
 [terminal]

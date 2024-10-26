@@ -246,7 +246,7 @@ require('lazy').setup({
       { 'nvim-telescope/telescope-ui-select.nvim' },
 
       -- Useful for getting pretty icons, but requires a Nerd Font.
-      { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
+      { 'nvim-tree/nvim-web-devicons',            enabled = vim.g.have_nerd_font },
     },
     config = function()
       -- Two important keymaps to use while in telescope are:
@@ -504,7 +504,6 @@ require('lazy').setup({
     'hrsh7th/nvim-cmp',
     event = 'InsertEnter',
     dependencies = {
-      -- Snippet Engine & its associated nvim-cmp source
       {
         'L3MON4D3/LuaSnip',
         build = (function()
@@ -516,6 +515,23 @@ require('lazy').setup({
           end
           return 'make install_jsregexp'
         end)(),
+        dependencies = {
+          "rafamadriz/friendly-snippets",
+          "benfowler/telescope-luasnip.nvim",
+        },
+        config = function(_, opts)
+          if opts then require("luasnip").config.setup(opts) end
+          vim.tbl_map(
+            function(type) require("luasnip.loaders.from_" .. type).lazy_load() end,
+            { "vscode", "snipmate", "lua" }
+          )
+          require("luasnip").filetype_extend("lua", { "luadoc" })
+          require("luasnip").filetype_extend("python", { "pydoc" })
+          require("luasnip").filetype_extend("rust", { "rustdoc" })
+          require("luasnip").filetype_extend("c", { "cdoc" })
+          require("luasnip").filetype_extend("cpp", { "cppdoc" })
+          require("luasnip").filetype_extend("sh", { "shelldoc" })
+        end,
       },
       'saadparwaiz1/cmp_luasnip',
 
@@ -525,14 +541,9 @@ require('lazy').setup({
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-path',
 
-      -- If you want to add a bunch of pre-configured snippets,
-      --    you can use this plugin to help you. It even has snippets
-      --    for various frameworks/libraries/etc. but you will have to
-      --    set up the ones that are useful for you.
       'rafamadriz/friendly-snippets',
     },
     config = function()
-      -- See `:help cmp`
       local cmp = require 'cmp'
       local luasnip = require 'luasnip'
       luasnip.config.setup {}
@@ -597,9 +608,9 @@ require('lazy').setup({
     'rose-pine/neovim',
     name = 'rose-pine',
     priority = 1000,
-    config = function()
-      vim.cmd.colorscheme 'rose-pine'
-    end,
+    -- config = function()
+    --   vim.cmd.colorscheme 'rose-pine'
+    -- end,
   },
 
   { -- Status line
@@ -607,13 +618,22 @@ require('lazy').setup({
     opts = {
       options = {
         icons_enabled = true,
-        theme = 'rose-pine',
+        theme = 'modus-vivendi',
         component_separators = '|',
         section_separators = '',
         file_status = true,
         path = 2,
       },
     },
+  },
+
+  {
+    "miikanissi/modus-themes.nvim",
+    name = 'modus',
+    priority = 1000,
+    config = function()
+      vim.cmd.colorscheme 'modus_vivendi'
+    end,
   },
 
   { -- Harpoon like
