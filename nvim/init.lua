@@ -160,20 +160,28 @@ end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-  -- Git related plugins
-  -- 'tpope/vim-fugitive',
-  -- 'tpope/vim-rhubarb',
-
   'christoomey/vim-tmux-navigator',
-
-  'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 
   'sindrets/diffview.nvim',
 
-  { -- Collection of various small independent plugins/modules
+  {
     'echasnovski/mini.nvim',
-    config = function()
-      require('mini.pairs').setup()
+    version = false, -- master
+    event = "VeryLazy",
+    opts = {
+      modes = { insert = true, command = true, terminal = false },
+      -- skip autopair when next character is one of these
+      skip_next = [=[[%w%%%'%[%"%.%`%$]]=],
+      -- skip autopair when the cursor is inside these treesitter nodes
+      skip_ts = { "string" },
+      -- skip autopair when next character is closing pair
+      -- and there are more closing pairs than opening pairs
+      skip_unbalanced = true,
+      -- better deal with markdown code blocks
+      markdown = true,
+    },
+    config = function(opts)
+      require('mini.pairs').setup(opts)
     end,
   },
 
@@ -320,7 +328,6 @@ require('lazy').setup({
   { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
     dependencies = {
-      -- Automatically install LSPs and related tools to stdpath for neovim
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
@@ -542,6 +549,14 @@ require('lazy').setup({
       'hrsh7th/cmp-path',
 
       'rafamadriz/friendly-snippets',
+
+      {
+        "garymjr/nvim-snippets",
+        opts = {
+          friendly_snippets = true,
+        },
+        dependencies = { "rafamadriz/friendly-snippets" },
+      }
     },
     config = function()
       local cmp = require 'cmp'
