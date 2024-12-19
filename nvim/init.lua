@@ -524,6 +524,10 @@ require('lazy').setup({
             'rafamadriz/friendly-snippets',
             config = function()
               require('luasnip.loaders.from_vscode').lazy_load()
+              require('luasnip').filetype_extend('cpp', { 'cppdoc' })
+              require('luasnip').filetype_extend('rust', { 'rustdoc' })
+              require('luasnip').filetype_extend('c', { 'cdoc' })
+              require("luasnip").filetype_extend("sh", { "shelldoc" })
             end,
           },
         },
