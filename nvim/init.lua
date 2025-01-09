@@ -430,8 +430,7 @@ require('lazy').setup({
         clangd = {},
         gopls = {},
         bashls = {},
-        cmake = {},
-        -- cmakelang = {},
+        neocmake = {},
         rust_analyzer = {
           ['rust-analyzer'] = {
             cargo = {
@@ -667,6 +666,43 @@ require('lazy').setup({
         harpoon:list():select(4)
       end)
     end,
+  },
+
+  {
+    'kdheepak/lazygit.nvim',
+    lazy = true,
+    cmd = {
+      'LazyGit',
+      'LazyGitConfig',
+      'LazyGitCurrentFile',
+      'LazyGitFilter',
+      'LazyGitFilterCurrentFile',
+    },
+    -- optional for floating window border decoration
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+    },
+    -- setting the keybinding for LazyGit with 'keys' is recommended in
+    -- order to load the plugin when the command is run for the first time
+    keys = {
+      { '<leader>lg', '<cmd>LazyGit<cr>', desc = 'LazyGit' },
+    },
+  },
+
+  {
+    'folke/snacks.nvim',
+    ---@type snacks.Config
+    opts = {
+      lazygit = {
+        -- your lazygit configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      },
+      bigfile = {
+        notify = true, -- show notification when big file detected
+        size = 10 * 1024 * 1024, -- 10MB
+      },
+    },
   },
 
   {
