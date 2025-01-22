@@ -23,7 +23,6 @@ symbol = ""
 format = '[\[$symbol$status\]]($style) '
 disabled = false
 
-# Disable the package module, hiding it from the prompt completely
 [package]
 disabled = true
 
@@ -50,6 +49,7 @@ format = ' [$path]($style)[$read_only]($read_only_style) '
 home_symbol = '~'
 
 [lua]
+disabled = true
 format = '[$symbol]($style)'
 
 [docker_context]
@@ -68,6 +68,7 @@ disabled = true
 disabled = true
 
 [c]
+disabled = true
 format = '[$symbol]($style)'
 
 [aws]
@@ -98,6 +99,7 @@ disabled = true
 disabled = true
 
 [golang]
+disabled = true
 format = '[$symbol]($style)'
 
 [helm]
@@ -134,19 +136,22 @@ disabled = true
 disabled = true
 
 [perl]
+disabled = true
 format = '[$symbol]($style)'
 
 [php]
+disabled = true
 format = '[$symbol]($style)'
 
 [python]
 format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
-disabled = false
+disabled = true
 
 [ruby]
 disabled = true
 
 [rust]
+disabled = true
 format = '[$symbol]($style)'
 
 [shlvl]
@@ -159,6 +164,7 @@ disabled = true
 disabled = true
 
 [zig]
+disabled = true
 format = '[$symbol]($style)'
 
 [purescript]
