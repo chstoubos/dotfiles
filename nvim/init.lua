@@ -430,6 +430,7 @@ require('lazy').setup({
         clangd = {},
         gopls = {},
         bashls = {},
+        shfmt = {},
         neocmake = {},
         rust_analyzer = {
           ['rust-analyzer'] = {
