@@ -1,7 +1,5 @@
-import = ["/home/chris/.config/alacritty/themes/rose-pine.toml"]
-
-[colors.primary]
-background = "#000000"
+# [colors.primary]
+# background = "#000000"
 
 [cursor]
 blink_interval = 500
@@ -12,7 +10,7 @@ blinking = "Always"
 shape = "Beam"
 
 [font]
-size = 9
+size = 14.5
 
 [font.bold]
 family = "JetBrainsMono Nerd Font"
@@ -34,15 +32,24 @@ style = "Regular"
 history = 100000
 multiplier = 3
 
-[shell]
+[terminal.shell]
 args = ["--login"]
 program = "/bin/zsh"
 
 [window]
 dynamic_title = true
-opacity = 0.75
+opacity = 1
 startup_mode = "Maximized"
 
 [window.dimensions]
 columns = 140
 lines = 40
+
+[window.padding]
+x = 3
+y = 0
+
+[general]
+import = ["/home/chris/.config/alacritty/themes/gruvbox_dark.toml"]
+
+[terminal]
