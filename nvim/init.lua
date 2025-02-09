@@ -410,9 +410,9 @@ require('lazy').setup({
         vim.diagnostic.config { signs = { text = diagnostic_signs } }
       end
 
-      vim.diagnostic.config({
+      vim.diagnostic.config {
         update_in_insert = true,
-      })
+      }
 
       -- LSP servers and clients are able to communicate to each other what features they support.
       --  By default, Neovim doesn't support everything that is in the LSP specification.
@@ -531,7 +531,7 @@ require('lazy').setup({
               require('luasnip').filetype_extend('cpp', { 'cppdoc' })
               require('luasnip').filetype_extend('rust', { 'rustdoc' })
               require('luasnip').filetype_extend('c', { 'cdoc' })
-              require("luasnip").filetype_extend("sh", { "shelldoc" })
+              require('luasnip').filetype_extend('sh', { 'shelldoc' })
             end,
           },
         },
@@ -733,6 +733,7 @@ require('lazy').setup({
 
   { -- Collection of various small independent plugins/modules
     'echasnovski/mini.nvim',
+    version = '*',
     config = function()
       -- Better Around/Inside textobjects
       --
@@ -748,6 +749,9 @@ require('lazy').setup({
       -- - sd'   - [S]urround [D]elete [']quotes
       -- - sr)'  - [S]urround [R]eplace [)] [']
       require('mini.surround').setup()
+
+      -- Comments based on treesitter commentstring
+      require('mini.comment').setup()
 
       -- Simple and easy statusline.
       --  You could remove this setup call if you don't like it,
