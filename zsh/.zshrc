@@ -24,6 +24,8 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
+setopt no_share_history
+
 export GEM_HOME="$HOME/gems"
 export PATH=$HOME/.npm-global/bin:$GEM_HOME:$PATH
 

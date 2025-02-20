@@ -95,13 +95,16 @@ vim.keymap.set('n', 'J', 'mzJ`z')
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
 vim.keymap.set('n', '<C-u>', '<C-u>zz')
 
--- Jump to start and end of line using the home row keys
-vim.keymap.set('', 'H', '^')
-vim.keymap.set('', 'L', '$')
-
 -- Keep the cursor in the middle of the screen while searching
 vim.keymap.set('n', 'n', 'nzzzv')
 vim.keymap.set('n', 'N', 'Nzzzv')
+
+-- Replace text globally
+-- vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+
+-- Jump to start and end of line using the home row keys
+vim.keymap.set('', 'H', '^')
+vim.keymap.set('', 'L', '$')
 
 -- Paste without adding the contents to your buffer
 vim.keymap.set('x', '<leader>p', [["_dP]])
@@ -306,11 +309,10 @@ require('lazy').setup({
     opts = {
       library = {
         -- Load luvit types when the `vim.uv` word is found
-        { path = 'luvit-meta/library', words = { 'vim%.uv' } },
+        { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
       },
     },
   },
-  { 'Bilal2453/luvit-meta', lazy = true },
   {
     -- Main LSP Configuration
     'neovim/nvim-lspconfig',
