@@ -23,20 +23,6 @@ vim.opt.vb = true
 -- Don't show the mode, since it's already in the status line
 vim.opt.showmode = false
 
--- Allow clipboard between OS and Neovim to work across SSH
--- OSC52 should be supported by the terminal emulator as well for this to function
-vim.g.clipboard = {
-  name = 'OSC 52',
-  copy = {
-    ['+'] = require('vim.ui.clipboard.osc52').copy '+',
-    ['*'] = require('vim.ui.clipboard.osc52').copy '*',
-  },
-  paste = {
-    ['+'] = require('vim.ui.clipboard.osc52').paste '+',
-    ['*'] = require('vim.ui.clipboard.osc52').paste '*',
-  },
-}
-
 -- Sync clipboard between OS and Neovim.
 --  Schedule the setting after `UiEnter` because it can increase startup-time.
 --  Remove this option if you want your OS clipboard to remain independent.
