@@ -749,14 +749,35 @@ require('lazy').setup({
       -- - sr)'  - [S]urround [R]eplace [)] [']
       require('mini.surround').setup()
 
-      -- Comments based on treesitter commentstring
-      require('mini.comment').setup()
+      -- Comments based on treesitter comment_string
+      require('mini.comment').setup {
+        options = {
+          -- Custom comment strings for specific file types
+          custom_commentstring = function()
+            -- Check if treesitter is active, if not return default commentstring
+            local has_parser, parser = pcall(vim.treesitter.get_parser, 0, nil, { error = false })
+            if not has_parser or parser == nil then
+              return vim.bo.commentstring
+            end
+
+            -- Find the active language parser for this line and overwrite if needed
+            local cur_line = vim.fn.line(".")
+            local lang = parser:language_for_range({cur_line, 0, cur_line, 0}):lang()
+            if lang == 'cpp' or lang == 'c' or lang == 'cuda' then
+              return '//%s'
+            end
+          end,
+        },
+      }
 
       -- Autopairs
       require('mini.pairs').setup()
 
       -- Glyph icons
       require('mini.icons').setup()
+
+      require('mini.cursorword').setup()
+      -- require('mini.trailspace').setup()
 
       -- Highlight whitespace
       -- require('mini.trailspace').setup()
