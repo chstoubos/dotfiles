@@ -20,6 +20,10 @@ plugins=(
 	zsh-autosuggestions
 	zsh-syntax-highlighting
 	colored-man-pages
+	copyfile
+	copypath
+	copybuffer
+	web-search
 )
 
 source $ZSH/oh-my-zsh.sh
