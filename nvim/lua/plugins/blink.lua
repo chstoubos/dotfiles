@@ -1,3 +1,5 @@
+-- https://github.com/saghen/blink.cmp
+
 return {
   'saghen/blink.cmp',
   event = 'VimEnter', -- late startup

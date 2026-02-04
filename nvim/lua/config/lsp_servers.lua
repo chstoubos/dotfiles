@@ -1,6 +1,6 @@
 local M = {}
 
--- LSP *config names* (the same names you pass to vim.lsp.enable)
+-- LSP
 M.servers = {
   'lua_ls',
   'clangd',

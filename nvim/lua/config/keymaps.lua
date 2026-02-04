@@ -30,7 +30,6 @@ function M.setup()
   vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
   vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
-  -- Keymaps for better default experience
   vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
   -- Unmap Q
@@ -46,7 +45,7 @@ function M.setup()
   vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
   -- Disable arrow keys in normal mode
-  -- let the left and right arrows be useful: they can switch buffers
+  -- left and right arrows can switch buffers
   vim.keymap.set('n', '<left>', ':bp<cr>')
   vim.keymap.set('n', '<right>', ':bn<cr>')
   vim.keymap.set('n', '<up>', '<nop>')

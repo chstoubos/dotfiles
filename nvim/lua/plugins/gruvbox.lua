@@ -1,3 +1,5 @@
+-- https://github.com/ellisonleao/gruvbox.nvim
+
 return {
   'ellisonleao/gruvbox.nvim',
 
