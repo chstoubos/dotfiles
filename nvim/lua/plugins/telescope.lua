@@ -20,6 +20,19 @@ return {
         find_files = {
           hidden = true,
           no_ignore = false,
+          find_command = { 'rg', '--files', '--hidden', '--glob', '!.git/*', '--glob', '!.vscode/*' },
+        },
+
+        live_grep = {
+          additional_args = function()
+            return {
+              '--hidden',
+              '--glob',
+              '!.git/*',
+              '--glob',
+              '!.vscode/*',
+            }
+          end,
         },
       },
     }
