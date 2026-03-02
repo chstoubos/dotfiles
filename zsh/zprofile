@@ -36,4 +36,4 @@ setopt rm_star_silent
 setopt extendedglob
 setopt no_share_history
 
-export PATH=$PATH:/usr/local/go/bin:/opt/cuda/bin
+export PATH=$PATH:/usr/local/go/bin
