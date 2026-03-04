@@ -23,24 +23,18 @@ plugins=(
 	copyfile
 	copypath
 	copybuffer
-	web-search
 )
 
 source $ZSH/oh-my-zsh.sh
 
-setopt no_share_history
-
 if [ -d /opt/ros/ ]; then
     source /opt/ros/humble/setup.zsh
-    eval "$(register-python-argcomplete3 ros2)"
-    eval "$(register-python-argcomplete3 colcon)"
+    eval "$(register-python-argcomplete ros2)"
+    eval "$(register-python-argcomplete colcon)"
 fi
 
-export PATH=${PATH}:/usr/local/cuda/bin
-export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/cuda/lib64
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+if [ -d $HOME/.cargo/ ]; then
+    source $HOME/.cargo/env
+fi
 
 [ -f $(which starship) ] && eval "$(starship init zsh)"
