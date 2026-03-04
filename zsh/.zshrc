@@ -33,8 +33,4 @@ if [ -d /opt/ros/ ]; then
     eval "$(register-python-argcomplete colcon)"
 fi
 
-if [ -d $HOME/.cargo/ ]; then
-    source $HOME/.cargo/env
-fi
-
 [ -f $(which starship) ] && eval "$(starship init zsh)"
