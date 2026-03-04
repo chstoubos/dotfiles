@@ -6,7 +6,6 @@ M.servers = {
   'clangd',
   'rust_analyzer',
   'gopls',
-  'bashls',
   'pylsp'
 }
 
