@@ -30,10 +30,10 @@ alias packages_info="pacman -Slq | fzf --preview 'pacman -Si {}' --layout=revers
 
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
-# Prevent auto complete of non-executable files in path
 setopt hashexecutablesonly
 setopt rm_star_silent
 setopt extendedglob
 setopt no_share_history
 
-export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:/usr/local/go/bin:/usr/local/cuda/bin
+export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/cuda/lib64
