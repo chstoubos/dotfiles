@@ -29,8 +29,8 @@ source $ZSH/oh-my-zsh.sh
 
 if [ -d /opt/ros/ ]; then
     source /opt/ros/humble/setup.zsh
-    eval "$(register-python-argcomplete ros2)"
-    eval "$(register-python-argcomplete colcon)"
+    eval "$(register-python-argcomplete3 ros2)"
+    eval "$(register-python-argcomplete3 colcon)"
 fi
 
 [ -f $(which starship) ] && eval "$(starship init zsh)"
