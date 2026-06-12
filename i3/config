@@ -40,9 +40,6 @@ exec --no-startup-id blueman-applet
 # Compositor
 exec --no-startup-id picom --config ~/.config/picom/picom.conf -b
 
-# Wallpaper
-exec --no-startup-id nitrogen --restore
-
 # Use pamixer to adjust volume in PulseAudio
 set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id volume-ctl up && $refresh_i3status
