@@ -4,9 +4,15 @@ local M = {}
 M.servers = {
   'lua_ls',
   'clangd',
+  'neocmake',
+  'bashls',
   'rust_analyzer',
   'gopls',
-  'pylsp'
+  'pylsp',
+  'prismals',
+  'tailwindcss',
+  'eslint',
+  'vtsls'
 }
 
 -- Non-LSP tools (formatters/linters)
@@ -14,6 +20,7 @@ M.tools = {
   'stylua',
   'shfmt',
   'shellcheck',
+  'prettier',
 }
 
 function M.ensure_installed()
