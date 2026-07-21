@@ -78,7 +78,6 @@ return {
         'llvm',
         'matlab',
         'toml',
-        'tmux',
         'yaml',
         'zsh',
         'xresources',
