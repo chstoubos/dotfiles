@@ -33,17 +33,6 @@ if [ -d /opt/ros/ ]; then
     eval "$(register-python-argcomplete3 colcon)"
 fi
 
-export PYENV_ROOT="$HOME/.pyenv"
-if command -v pyenv >/dev/null 2>&1 || [[ -d $PYENV_ROOT/bin ]]; then
-    [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-    eval "$(pyenv init - zsh)"
-fi
-
-# opencode
-if [ -d "$HOME/.opencode" ]; then
-    export PATH=$HOME/.opencode/bin:$PATH
-fi
-
 if [ -d "$HOME/.nvm" ]; then
     export NVM_DIR="$HOME/.nvm"
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
