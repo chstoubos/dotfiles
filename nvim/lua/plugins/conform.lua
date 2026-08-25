@@ -36,6 +36,7 @@ return {
       lua = { 'stylua' },
       rust = { 'rustfmt', lsp_format = 'fallback' },
       cpp = { 'clang-format', lsp_format = 'first' },
+      c = { 'clang-format', lsp_format = 'first' },
       javascript = { 'prettier' },
       javascriptreact = { 'prettier' },
       typescript = { 'prettier' },
