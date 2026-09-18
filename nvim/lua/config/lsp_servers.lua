@@ -4,7 +4,6 @@ local M = {}
 M.servers = {
   'lua_ls',
   'clangd',
-  'neocmake',
   'bashls',
   'rust_analyzer',
   'gopls',
@@ -15,7 +14,7 @@ M.servers = {
   'vtsls',
   'jsonls',
   'yamlls',
-  'dockerls'
+  'dockerls',
 }
 
 -- Non-LSP tools (formatters/linters)

@@ -37,21 +37,6 @@ function M.setup(servers)
         vim.keymap.set(mode, keys, func, { buffer = args.buf, desc = 'LSP: ' .. desc })
       end
 
-      -- Rename the variable under your cursor.
-      --  Most Language Servers support renaming across files, etc.
-      map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
-
-      -- Execute a code action, usually your cursor needs to be on top of an error
-      -- or a suggestion from your LSP for this to activate.
-      map('<leader>ca', vim.lsp.buf.code_action, '[G]oto Code [A]ction', { 'n', 'x' })
-
-      -- Find references for the word under your cursor.
-      map('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-
-      -- Jump to the implementation of the word under your cursor.
-      --  Useful when your language has ways of declaring types without an actual implementation.
-      map('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
-
       -- Jump to the definition of the word under your cursor.
       --  This is where a variable was first declared, or where a function is defined, etc.
       --  To jump back, press <C-t>.
@@ -69,15 +54,14 @@ function M.setup(servers)
       --  Similar to document symbols, except searches over your entire project.
       map('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Open Workspace Symbols')
 
-      -- Jump to the type of the word under your cursor.
-      --  Useful when you're not sure what type a variable is and you want to see
-      --  the definition of its *type*, not where it was *defined*.
-      -- map("<leader>D", require("telescope.builtin").lsp_type_definitions, "[G]oto [T]ype Definition")
-
       local bufnr = args.buf
       local client = vim.lsp.get_client_by_id(args.data.client_id)
       if not client then
         return
+      end
+
+      if client.name == 'clangd' then
+        map('<leader>o', '<cmd>LspClangdSwitchSourceHeader<CR>', 'Switch source/header')
       end
 
       -- Document highlight (only if supported)

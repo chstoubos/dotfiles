@@ -2,7 +2,6 @@
 
 return {
   'stevearc/conform.nvim',
-  event = { 'BufWritePre' },
   cmd = { 'ConformInfo' },
   keys = {
     {
@@ -35,8 +34,8 @@ return {
     formatters_by_ft = {
       lua = { 'stylua' },
       rust = { 'rustfmt', lsp_format = 'fallback' },
-      cpp = { 'clang-format', lsp_format = 'first' },
-      c = { 'clang-format', lsp_format = 'first' },
+      cpp = { 'clang-format' },
+      c = { 'clang-format' },
       javascript = { 'prettier' },
       javascriptreact = { 'prettier' },
       typescript = { 'prettier' },
