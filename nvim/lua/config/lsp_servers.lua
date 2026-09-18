@@ -12,7 +12,10 @@ M.servers = {
   'prismals',
   'tailwindcss',
   'eslint',
-  'vtsls'
+  'vtsls',
+  'jsonls',
+  'yamlls',
+  'dockerls'
 }
 
 -- Non-LSP tools (formatters/linters)
