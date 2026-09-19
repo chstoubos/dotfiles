@@ -9,7 +9,16 @@ return {
     --  - va)  - [V]isually select [A]round [)]paren
     --  - yinq - [Y]ank [I]nside [N]ext [Q]uote
     --  - ci'  - [C]hange [I]nside [']quote
-    require('mini.ai').setup { n_lines = 500 }
+    local ai = require 'mini.ai'
+    ai.setup {
+      n_lines = 500,
+      custom_textobjects = {
+        -- Default spec splits on commas inside <>, which breaks C++ templates
+        a = ai.gen_spec.argument {
+          exclude_regions = { '%b""', "%b''", '%b()', '%b[]', '%b{}', '%b<>' },
+        },
+      },
+    }
 
     -- Add/delete/replace surroundings (brackets, quotes, etc.)
     --
@@ -29,6 +38,44 @@ return {
         -- Highlight hex color strings (`#rrggbb`) using that color
         hex_color = require('mini.hipatterns').gen_highlighter.hex_color(),
       },
+    }
+
+    -- Replaces vim.ui.input, used by the stock `grn` rename prompt
+    require('mini.input').setup()
+
+    -- ]q/[q quickfix, ]d/[d diagnostics, ]c/[c comments, etc.
+    require('mini.bracketed').setup()
+
+    -- gS to split/join argument lists
+    require('mini.splitjoin').setup()
+
+    -- Show available keys after a delay
+    local clue = require 'mini.clue'
+    clue.setup {
+      triggers = {
+        { mode = 'n', keys = '<Leader>' },
+        { mode = 'x', keys = '<Leader>' },
+        { mode = 'n', keys = 'g' },
+        { mode = 'x', keys = 'g' },
+        { mode = 'n', keys = ']' },
+        { mode = 'n', keys = '[' },
+        { mode = 'n', keys = 'z' },
+        { mode = 'x', keys = 'z' },
+        { mode = 'n', keys = '"' },
+        { mode = 'x', keys = '"' },
+        { mode = 'i', keys = '<C-r>' },
+        { mode = 'n', keys = '<C-w>' },
+      },
+      clues = {
+        clue.gen_clues.builtin_completion(),
+        clue.gen_clues.g(),
+        clue.gen_clues.marks(),
+        clue.gen_clues.registers(),
+        clue.gen_clues.square_brackets(),
+        clue.gen_clues.windows(),
+        clue.gen_clues.z(),
+      },
+      window = { delay = 400 },
     }
 
     local statusline = require 'mini.statusline'
