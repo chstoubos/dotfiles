@@ -35,6 +35,9 @@ function M.setup()
   -- Unmap Q
   vim.keymap.set('n', 'Q', '<nop>')
 
+  -- Drop the default insert-mode signature help; blink.cmp's <C-k> covers it
+  vim.keymap.del('i', '<C-s>')
+
   -- Clear highlights on search when pressing <Esc> in normal mode
   vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 

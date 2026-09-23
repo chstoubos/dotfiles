@@ -68,6 +68,8 @@ return {
         'vim',
         'vimdoc',
         'python',
+        'rust',
+        'prisma',
         'udev',
         'json',
         'hjson',

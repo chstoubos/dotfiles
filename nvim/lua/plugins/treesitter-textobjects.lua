@@ -26,7 +26,7 @@ return {
     local select = require 'nvim-treesitter-textobjects.select'
     local move = require 'nvim-treesitter-textobjects.move'
 
-    -- m = function, c = class. mini.ai already owns a/f/b/q/t.
+    -- m = function, c = class
     local objects = {
       ['am'] = '@function.outer',
       ['im'] = '@function.inner',

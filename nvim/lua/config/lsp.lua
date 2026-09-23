@@ -29,6 +29,10 @@ function M.setup(servers)
     },
   }
 
+  -- Created once so per-buffer autocmds from earlier attaches aren't wiped
+  local hl_group = vim.api.nvim_create_augroup('chris-lsp-highlight', { clear = true })
+  local detach_group = vim.api.nvim_create_augroup('chris-lsp-detach', { clear = true })
+
   vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('chris-lsp-attach', { clear = true }),
     callback = function(args)
@@ -39,20 +43,16 @@ function M.setup(servers)
 
       -- Jump to the definition of the word under your cursor.
       --  This is where a variable was first declared, or where a function is defined, etc.
-      --  To jump back, press <C-t>.
-      map('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
+      --  To jump back, press <C-t>. Multiple results go to the quickfix list.
+      --  reuse_win: if the target file is already open in another window, jump
+      --  there instead (then use <C-w>p to go back, <C-t> is per-window).
+      map('gd', function()
+        vim.lsp.buf.definition { reuse_win = true }
+      end, '[G]oto [D]efinition')
 
       -- WARN: This is not Goto Definition, this is Goto Declaration.
       --  For example, in C this would take you to the header.
       map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-
-      -- Fuzzy find all the symbols in your current document.
-      --  Symbols are things like variables, functions, types, etc.
-      map('<leader>ds', require('telescope.builtin').lsp_document_symbols, 'Open Document Symbols')
-
-      -- Fuzzy find all the symbols in your current workspace.
-      --  Similar to document symbols, except searches over your entire project.
-      map('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Open Workspace Symbols')
 
       local bufnr = args.buf
       local client = vim.lsp.get_client_by_id(args.data.client_id)
@@ -66,7 +66,9 @@ function M.setup(servers)
 
       -- Document highlight (only if supported)
       if client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight, bufnr) then
-        local hl_group = vim.api.nvim_create_augroup('chris-lsp-highlight', { clear = false })
+        -- Avoid duplicates when a second capable client attaches to the same buffer
+        vim.api.nvim_clear_autocmds { group = hl_group, buffer = bufnr }
+        vim.api.nvim_clear_autocmds { group = detach_group, buffer = bufnr }
 
         vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
           group = hl_group,
@@ -81,11 +83,20 @@ function M.setup(servers)
         })
 
         vim.api.nvim_create_autocmd('LspDetach', {
-          group = vim.api.nvim_create_augroup('chris-lsp-detach', { clear = true }),
+          group = detach_group,
           buffer = bufnr,
-          callback = function()
-            vim.lsp.buf.clear_references()
-            vim.api.nvim_clear_autocmds { group = 'chris-lsp-highlight', buffer = bufnr }
+          callback = function(ev)
+            -- Keep highlights if another attached client still provides them (e.g. eslint leaving while vtsls stays)
+            local method = vim.lsp.protocol.Methods.textDocument_documentHighlight
+            for _, c in ipairs(vim.lsp.get_clients { bufnr = bufnr, method = method }) do
+              if c.id ~= ev.data.client_id then
+                return
+              end
+            end
+
+            -- bufnr may not be the current buffer when a client detaches
+            vim.lsp.util.buf_clear_references(bufnr)
+            vim.api.nvim_clear_autocmds { group = hl_group, buffer = bufnr }
           end,
         })
       end
