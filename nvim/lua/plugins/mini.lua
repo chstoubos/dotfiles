@@ -49,7 +49,33 @@ return {
     }
 
     local statusline = require 'mini.statusline'
-    statusline.setup { use_icons = true }
+
+    -- In quickfix/location list windows show the list's name (e.g. "References",
+    -- "Diagnostics") instead of "[Quickfix List]", which stays as the fallback for
+    -- untitled lists. Statusline expressions run in the context of the window
+    -- being drawn, so vim.bo/vim.w refer to that window.
+    local function list_name()
+      if vim.bo.buftype == 'quickfix' then
+        local title = vim.w.quickfix_title or ''
+        return title ~= '' and title:gsub('%%', '%%%%') or '%t'
+      end
+    end
+
+    statusline.setup {
+      use_icons = true,
+      content = {
+        -- Default inactive content, plus the list name
+        inactive = function()
+          return '%#MiniStatuslineInactive#' .. (list_name() or '%F') .. '%='
+        end,
+      },
+    }
+
+    local section_filename = statusline.section_filename
+    ---@diagnostic disable-next-line: duplicate-set-field
+    statusline.section_filename = function(args)
+      return list_name() or section_filename(args)
+    end
 
     -- You can configure sections in the statusline by overriding their
     -- default behavior. For example, here we set the section for

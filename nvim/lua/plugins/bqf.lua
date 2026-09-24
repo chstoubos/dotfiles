@@ -9,5 +9,16 @@ return {
       winblend = 0,
       show_scroll_bar = true,
     },
+    -- Disable marking items (<Tab> etc.) and filtering them into new lists
+    func_map = {
+      stoggleup = '',
+      stoggledown = '',
+      stogglevm = '',
+      stogglebuf = '',
+      sclear = '',
+      filter = '',
+      filterr = '',
+      fzffilter = '',
+    },
   },
 }

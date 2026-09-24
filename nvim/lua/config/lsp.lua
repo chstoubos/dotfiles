@@ -1,5 +1,98 @@
 local M = {}
 
+-- Put items in the quickfix list called `title` and show it. An existing list with
+-- that title is replaced rather than a new one added, so there is only ever one
+-- (e.g. a single "References" list next to the "Diagnostics" one).
+local function set_titled_qflist(title, items)
+  local id
+  for nr = 1, vim.fn.getqflist({ nr = '$' }).nr do
+    local list = vim.fn.getqflist { nr = nr, title = 0, id = 0 }
+    if list.title == title then
+      id = list.id
+    end
+  end
+  vim.fn.setqflist({}, id and 'r' or ' ', { id = id, title = title, items = items })
+  vim.cmd(('silent %dchistory'):format(vim.fn.getqflist({ id = id or 0, nr = 0 }).nr))
+  vim.cmd 'botright copen'
+end
+
+-- Telescope picker for document symbols that also shows the LSP `detail` field.
+-- For clangd that is the signature (e.g. `void (const Foo &, double)`), so
+-- overloads can be told apart even when the declaration spans several lines.
+-- Telescope's builtin lsp_document_symbols drops this field.
+local function document_symbols()
+  local bufnr = vim.api.nvim_get_current_buf()
+  local params = { textDocument = vim.lsp.util.make_text_document_params(bufnr) }
+
+  vim.lsp.buf_request_all(bufnr, 'textDocument/documentSymbol', params, function(results)
+    local items = {}
+    local function add(symbols, client)
+      for _, s in ipairs(symbols) do
+        -- DocumentSymbol has selectionRange (the name), SymbolInformation has location
+        local pos = (s.selectionRange or s.location.range).start
+        local line = vim.api.nvim_buf_get_lines(bufnr, pos.line, pos.line + 1, false)[1] or ''
+        table.insert(items, {
+          name = s.name,
+          kind = vim.lsp.protocol.SymbolKind[s.kind] or 'Unknown',
+          detail = s.detail or '',
+          lnum = pos.line + 1,
+          col = vim.str_byteindex(line, client.offset_encoding, pos.character, false),
+        })
+        add(s.children or {}, client)
+      end
+    end
+    for client_id, res in pairs(results) do
+      local client = vim.lsp.get_client_by_id(client_id)
+      if client and res.result then
+        add(res.result, client)
+      end
+    end
+    if #items == 0 then
+      vim.notify('No document symbols', vim.log.levels.INFO)
+      return
+    end
+
+    local conf = require('telescope.config').values
+    local name_width = 0
+    for _, item in ipairs(items) do
+      name_width = math.max(name_width, #item.name)
+    end
+    local displayer = require('telescope.pickers.entry_display').create {
+      separator = '  ',
+      items = { { width = math.min(name_width, 60) }, { width = 10 }, { remaining = true } },
+    }
+    local opts = {
+      layout_strategy = 'vertical',
+      layout_config = { width = 0.9, height = 0.9, preview_height = 0.4 },
+    }
+
+    require('telescope.pickers')
+      .new(opts, {
+        prompt_title = 'Document Symbols',
+        finder = require('telescope.finders').new_table {
+          results = items,
+          entry_maker = function(item)
+            return {
+              value = item,
+              -- Include the signature so typing a parameter type narrows overloads
+              ordinal = item.name .. ' ' .. item.detail,
+              display = function()
+                return displayer { item.name, { item.kind:lower(), 'TelescopeResults' .. item.kind }, item.detail }
+              end,
+              bufnr = bufnr,
+              filename = vim.api.nvim_buf_get_name(bufnr),
+              lnum = item.lnum,
+              col = item.col,
+            }
+          end,
+        },
+        sorter = conf.generic_sorter(opts),
+        previewer = conf.qflist_previewer(opts),
+      })
+      :find()
+  end)
+end
+
 function M.setup(servers)
   vim.diagnostic.config {
     update_in_insert = true,
@@ -53,6 +146,20 @@ function M.setup(servers)
       -- WARN: This is not Goto Definition, this is Goto Declaration.
       --  For example, in C this would take you to the header.
       map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+
+      -- Document symbols in a picker instead of the default location list, so it
+      -- doesn't stack with the quickfix list from grr
+      map('gO', document_symbols, 'Document symbols')
+
+      -- Same as the default grr, but a new search replaces the previous
+      -- "References" list instead of adding another one
+      map('grr', function()
+        vim.lsp.buf.references(nil, {
+          on_list = function(list)
+            set_titled_qflist('References', list.items)
+          end,
+        })
+      end, 'References')
 
       local bufnr = args.buf
       local client = vim.lsp.get_client_by_id(args.data.client_id)
