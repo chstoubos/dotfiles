@@ -42,6 +42,7 @@ return {
           end,
         }),
 
+        grep_string = wide_layout,
         help_tags = wide_layout,
         buffers = wide_layout,
       },
